@@ -7,7 +7,7 @@ class Student
     new_song.name = new_song[1]
     new_song.length = new_song[2]
     new_song
-
+    
   end
 
   def self.all
@@ -15,23 +15,25 @@ class Student
       SELECT * FROM students
       SQL
 
-    DB[:conn].execute(sql)
+    DB[:conn].execute(sql).map do |row|
+      self.new_from_db(row)
+    end
   end
 
   def self.find_by_name(name)
     # find the student in the database given a name
     # return a new instance of the Student class
   end
-
+  
   def save
     sql = <<-SQL
-      INSERT INTO students (name, grade)
+      INSERT INTO students (name, grade) 
       VALUES (?, ?)
     SQL
 
     DB[:conn].execute(sql, self.name, self.grade)
   end
-
+  
   def self.create_table
     sql = <<-SQL
     CREATE TABLE IF NOT EXISTS students (
