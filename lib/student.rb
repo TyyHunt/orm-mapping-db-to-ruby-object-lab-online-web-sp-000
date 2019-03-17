@@ -68,7 +68,6 @@ class Student
   def self.first_student_in_grade_10
     sql = <<-SQL
     SELECT * FROM students
-    ORDER BY students.grade
     WHERE grade = 10
     LIMIT 1
     SQL
