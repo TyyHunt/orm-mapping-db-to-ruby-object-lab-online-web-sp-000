@@ -7,7 +7,6 @@ class Student
     new_student.name = new_student[1]
     new_student.grade = new_student[2]
     new_student
-
   end
 
   def self.all
